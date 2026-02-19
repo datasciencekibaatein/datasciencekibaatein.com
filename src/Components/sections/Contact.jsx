@@ -124,7 +124,7 @@ const Contact = ({ isMobile, colors, theme }) => {
               method="POST"
               data-netlify="true"
               netlify-honeypot="bot-field"
-
+              netlify
 
 
             style={{
