@@ -5,15 +5,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useThemeColors } from './hooks/useThemeColors';
 
 // Components
-import Navbar from './components/layout/Navbar';
-import MobileMenu from './components/layout/MobileMenu';
-import AnimatedBackground from './components/layout/AnimatedBackground';
-import Home from './components/sections/Home';
-import PaidCourses from './components/sections/PaidCourses';
-import About from './components/sections/About';
-import Courses from './components/sections/Courses';
-import Blog from './components/sections/Blog';
-import Contact from './components/sections/Contact';
+import Navbar from './Components/layout/Navbar';
+import MobileMenu from './Components/layout/MobileMenu';
+import AnimatedBackground from './Components/layout/AnimatedBackground';
+import Home from './Components/sections/Home';
+import PaidCourses from './Components/sections/PaidCourses';
+import About from './Components/sections/About';
+import Courses from './Components/sections/Courses';
+import Blog from './Components/sections/Blog';
+import Contact from './Components/sections/Contact';
 
 const App = () => {
   const [theme, setTheme] = useState('dark');
