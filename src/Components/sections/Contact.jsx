@@ -120,6 +120,13 @@ const Contact = ({ isMobile, colors, theme }) => {
           }} />
 
           <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+
+
+
             style={{
               width: '100%',
               background: glassyBg,
@@ -129,64 +136,93 @@ const Contact = ({ isMobile, colors, theme }) => {
               padding: isMobile ? '2rem' : '3rem',
               boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
             }}
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert('Message sent! I usually respond within 24 hours.');
-              e.target.reset();
-            }}
+            // onSubmit={(e) => {
+            //   e.preventDefault();
+            //   alert('Message sent! I usually respond within 24 hours.');
+            //   e.target.reset();
+            // }}
           >
+
+            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="bot-field" />
+
             <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: textColor }}>
               Send a Message 🚀
             </h3>
 
-            {['Name', 'Email', 'Message'].map((label) => (
-              <div key={label} style={{ marginBottom: '1.5rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: '600', color: secondaryText, textTransform: 'uppercase', letterSpacing: '1px' }}>
-                  {label}
-                </label>
-                {label === 'Message' ? (
-                  <textarea
-                    required
-                    rows={4}
-                    placeholder="How can I help you today?"
+            {['Name', 'Email', 'Message'].map((label) => {
+              const fieldName =
+                label === 'Name' ? 'name' :
+                label === 'Email' ? 'email' :
+                'message';
+
+              return (
+                <div key={label} style={{ marginBottom: '1.5rem' }}>
+                  <label
                     style={{
-                      width: '100%',
-                      padding: '1rem',
-                      background: theme === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.5)',
-                      border: `1px solid ${glassBorder}`,
-                      borderRadius: '12px',
-                      color: textColor,
-                      fontSize: '1rem',
-                      resize: 'vertical',
-                      outline: 'none',
-                      fontFamily: 'inherit',
-                      transition: 'border-color 0.3s'
+                      display: 'block',
+                      marginBottom: '0.5rem',
+                      fontSize: '0.9rem',
+                      fontWeight: '600',
+                      color: secondaryText,
+                      textTransform: 'uppercase',
+                      letterSpacing: '1px'
                     }}
-                    onFocus={(e) => e.target.style.borderColor = '#4f46e5'}
-                    onBlur={(e) => e.target.style.borderColor = glassBorder}
-                  />
-                ) : (
-                  <input
-                    type={label === 'Email' ? 'email' : 'text'}
-                    required
-                    placeholder={label === 'Name' ? 'John Doe' : 'john@example.com'}
-                    style={{
-                      width: '100%',
-                      padding: '1rem',
-                      background: theme === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.5)',
-                      border: `1px solid ${glassBorder}`,
-                      borderRadius: '12px',
-                      color: textColor,
-                      fontSize: '1rem',
-                      outline: 'none',
-                      transition: 'border-color 0.3s'
-                    }}
-                    onFocus={(e) => e.target.style.borderColor = '#4f46e5'}
-                    onBlur={(e) => e.target.style.borderColor = glassBorder}
-                  />
-                )}
-              </div>
-            ))}
+                  >
+                    {label}
+                  </label>
+
+                  {label === 'Message' ? (
+                    <textarea
+                      name={fieldName}
+                      required
+                      rows={4}
+                      placeholder="How can I help you today?"
+                      style={{
+                        width: '100%',
+                        padding: '1rem',
+                        background: theme === 'dark'
+                          ? 'rgba(0, 0, 0, 0.2)'
+                          : 'rgba(255, 255, 255, 0.5)',
+                        border: `1px solid ${glassBorder}`,
+                        borderRadius: '12px',
+                        color: textColor,
+                        fontSize: '1rem',
+                        resize: 'vertical',
+                        outline: 'none',
+                        fontFamily: 'inherit',
+                        transition: 'border-color 0.3s'
+                      }}
+                      onFocus={(e) => e.target.style.borderColor = '#4f46e5'}
+                      onBlur={(e) => e.target.style.borderColor = glassBorder}
+                    />
+                  ) : (
+                    <input
+                      type={label === 'Email' ? 'email' : 'text'}
+                      name={fieldName}
+                      required
+                      placeholder={label === 'Name' ? 'John Doe' : 'john@example.com'}
+                      style={{
+                        width: '100%',
+                        padding: '1rem',
+                        background: theme === 'dark'
+                          ? 'rgba(0, 0, 0, 0.2)'
+                          : 'rgba(255, 255, 255, 0.5)',
+                        border: `1px solid ${glassBorder}`,
+                        borderRadius: '12px',
+                        color: textColor,
+                        fontSize: '1rem',
+                        outline: 'none',
+                        transition: 'border-color 0.3s'
+                      }}
+                      onFocus={(e) => e.target.style.borderColor = '#4f46e5'}
+                      onBlur={(e) => e.target.style.borderColor = glassBorder}
+                    />
+                  )}
+                </div>
+              );
+            })}
+
 
             <motion.button
               type="submit"
